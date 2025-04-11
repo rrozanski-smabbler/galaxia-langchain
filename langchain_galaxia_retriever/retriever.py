@@ -112,16 +112,16 @@ class GalaxiaRetriever(BaseRetriever):
         .. code-block:: python
 
         from langchain_galaxia_retriever.retriever import GalaxiaRetriever
-        from langchain_core.callbacks.manager import RunManager
 
         gr = GalaxiaRetriever(
             api_url="beta.api.smabbler.com",
             api_key="<key>",
             knowledge_base_id="<knowledge_base_id>",
+            n_retries=10,
+            wait_time=5,
         )
 
-        rm = RunManager.get_noop_manager()
-        result = gr._get_relevant_documents('<test question>', rm)
+        result = gr.invoke('<test question>')
         print(result)
     """
     api_url: str
